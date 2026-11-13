@@ -1,164 +1,49 @@
-\# Demo Web Shop - Tests automatisés
-
-
-
-\## Présentation
-
-
-
-Ce projet contient des tests automatisés de l'application Demo Web Shop avec Python, Playwright et Pytest.
-
-
-
-Le premier périmètre concerne la fonctionnalité d'inscription d'un nouvel utilisateur.
-
-
-
-\## Technologies utilisées
-
-
-
-\- Python 3.13
-
-
-
-\- Playwright
-
-
-
-\- Pytest
-
-
-
-\## Installation
-
-
-
-Cloner le dépôt Git, puis créer et activer un environnement virtuel :
-
-
-
-```bash
-
-
-
-py -3.13 -m venv .venv
-
-
-
-.venv\\Scripts\\activate
-
-
-
-```
-
-
-
-Installer les dépendances :
-
-
-
-```bash
-
-
-
-python -m pip install -r requirements.txt
-
-
-
-python -m playwright install chromium
-
-
-
-```
-
-
-
-\## Exécution des tests
-
-
-
-Depuis la racine du projet :
-
-
-
-```bash
-
-
-
-python -m pytest tests -v
-
-
-
-```
-
-
-
-\## Structure du projet
-
-
-
-```text
-
-
-
-Projets\_Playwright/
-
-
-
+Demo Web Shop - Tests automatisés
+Présentation
+Ce projet contient des tests automatisés de l’application Demo Web Shop avec Python, Playwright et Pytest.
+Le premier périmètre concerne la fonctionnalité d’inscription d’un nouvel utilisateur.
+Technologies utilisées
+Python 3.13
+Playwright
+Pytest
+Structure du projet
+Projets_Playwright/
 ├── pages/
-
-
-
-│   ├── base\_page.py
-
-
-
-│   └── register\_page.py
-
-
-
+│   ├── base_page.py
+│   └── register_page.py
 ├── tests/
-
-
-
-│   └── test\_registration.py
-
-
-
+│   └── test_registration.py
 ├── conftest.py
-
-
-
-├── test\_data.py
-
-
-
+├── test_data.py
 ├── requirements.txt
-
-
-
 ├── README.md
-
-
-
 └── .gitignore
-
-
-
-```
-
-
-
-\## Tests disponibles
-
-
-
-\- Vérification de l'ouverture de la page d'inscription.
-
-
-
-\- Inscription d'un nouvel utilisateur avec des données valides.
-
-&#x20;
-
+Prérequis
+Python 3.13
+Git
+Visual Studio Code (recommandé)
+Installation
+Windows
+Créer l’environnement virtuel :
+py -3.13 -m venv .venv
+Activer l’environnement virtuel :
+.venv\Scripts\Activate.ps1
+Si PowerShell bloque l’activation, utiliser l’invite de commandes :
+.venv\Scripts\activate.bat
+macOS / Linux
+Créer l’environnement virtuel :
+python3.13 -m venv .venv
+Activer l’environnement virtuel :
+source .venv/bin/activate
+Installer les dépendances
+Sur Windows, macOS et Linux :
+python -m pip install -r requirements.txt
+Installer le navigateur Chromium utilisé par Playwright :
+python -m playwright install chromium
+Exécution des tests
+Lancer l’ensemble des tests :
+python -m pytest tests -v
+Résultats
+Pytest affiche le résultat de chaque test exécuté directement dans le terminal.
+PASSED : test réussi
+FAILED : test en échec
