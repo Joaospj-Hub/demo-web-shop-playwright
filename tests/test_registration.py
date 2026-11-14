@@ -1,3 +1,5 @@
+import pytest
+
 from pages.register_page import RegisterPage
 from test_data import get_valid_registration_data
 
@@ -37,6 +39,7 @@ def test_register_without_first_name(page):
        "First name is required."
    ).is_visible()
 
+@pytest.mark.squash("CT-INS-005")
 def test_ct_ins_005_different_password_confirmation(page):
    register_page = RegisterPage(page)
    register_page.open()
@@ -55,6 +58,7 @@ def test_ct_ins_005_different_password_confirmation(page):
    assert page.locator("#register-button").is_visible()
 
 
+@pytest.mark.squash("CT-INS-001")
 def test_ct_ins_001_short_password(page):
    register_page = RegisterPage(page)
    register_page.open()
