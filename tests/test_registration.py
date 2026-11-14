@@ -6,7 +6,7 @@ def test_open_registration_page(page):
    register_page.open()
    assert "Register" in page.title()
 
-def test_register_new_user(page):
+def test_ct_ins_004_valid_registration(page):
    register_page = RegisterPage(page)
    register_page.open()
    data = get_valid_registration_data()
@@ -37,7 +37,7 @@ def test_register_without_first_name(page):
        "First name is required."
    ).is_visible()
 
-def test_register_with_different_password_confirmation(page):
+def test_ct_ins_005_different_password_confirmation(page):
    register_page = RegisterPage(page)
    register_page.open()
    data = get_valid_registration_data()
@@ -52,3 +52,16 @@ def test_register_with_different_password_confirmation(page):
    assert page.get_by_text(
        "The password and confirmation password do not match."
    ).is_visible()
+
+
+def test_ct_ins_001_short_password(page):
+   register_page = RegisterPage(page)
+   register_page.open()
+   data = get_valid_registration_data()
+   register_page.register(
+       first_name=data["first_name"],
+       last_name=data["last_name"],
+       email=data["email"],
+       password="12345"
+   )
+   register_page.submit()
