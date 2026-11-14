@@ -97,14 +97,29 @@ python -m pytest tests/test_registration.py::test_ct_ins_001_short_password -v
 ```bash
 python -m pytest tests/test_registration.py::test_ct_ins_005_different_password_confirmation -v
 ```
-## 7. Traçabilité avec Squash
+## 7. Génération des rapports HTML
+Le projet utilise le plugin `pytest-html` pour générer des rapports d'exécution au format HTML.
+### Générer un rapport HTML
+Créer le dossier `reports/` à la racine du projet, puis exécuter :
+   python -m pytest tests -v --html=reports/rapport_tests.html --self-contained-html
+Le rapport est généré dans le dossier `reports/`.
+### Consulter le rapport
+Ouvrir le fichier `reports/rapport_tests.html` dans un navigateur pour consulter :
+- Le nombre de tests réussis et échoués.
+- Le résultat de chaque test.
+- La durée d'exécution.
+- Les éventuelles erreurs.
+Le rapport permet de visualiser rapidement les résultats d'une campagne de tests automatisés.
+
+## 8. Traçabilité avec Squash
 Les tests automatisés associés aux cas de test Squash utilisent des marqueurs Pytest.
 | Identifiant Squash | Scénario automatisé |
 |---|---|
 | CT-INS-001 | Refus d'inscription avec un mot de passe trop court |
 | CT-INS-005 | Refus d'inscription avec une confirmation de mot de passe différente |
 Cette organisation permet d'identifier les tests correspondant aux cas de test fonctionnels et de les exécuter individuellement ou par groupe.
-## 8. Résultats des tests
+
+## 9. Résultats des tests
 Pytest affiche directement dans le terminal le résultat de chaque test exécuté.
 - `PASSED` : le test a réussi.
 - `FAILED` : le test a échoué.

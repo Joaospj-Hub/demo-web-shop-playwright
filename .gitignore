@@ -10,3 +10,6 @@ __pycache__/
 .env
 
 test_premier_script.py
+
+# Rapports de tests générés
+reports/
