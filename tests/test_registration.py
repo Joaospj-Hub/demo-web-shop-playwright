@@ -52,6 +52,7 @@ def test_ct_ins_005_different_password_confirmation(page):
    assert page.get_by_text(
        "The password and confirmation password do not match."
    ).is_visible()
+   assert page.locator("#register-button").is_visible()
 
 
 def test_ct_ins_001_short_password(page):
@@ -65,3 +66,7 @@ def test_ct_ins_001_short_password(page):
        password="12345"
    )
    register_page.submit()
+   assert page.get_by_text(
+       "The password should have at least 6 characters."
+   ).is_visible()
+   assert page.locator("#register-button").is_visible()
