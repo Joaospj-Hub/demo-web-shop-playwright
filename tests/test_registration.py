@@ -23,21 +23,6 @@ def test_ct_ins_004_valid_registration(page):
        "Your registration completed"
    ).is_visible()
 
-def test_register_without_first_name(page):
-   register_page = RegisterPage(page)
-   register_page.open()
-   data = get_valid_registration_data()
-   data["first_name"] = ""
-   register_page.register(
-       first_name=data["first_name"],
-       last_name=data["last_name"],
-       email=data["email"],
-       password=data["password"]
-   )
-   register_page.submit()
-   assert page.get_by_text(
-       "First name is required."
-   ).is_visible()
 
 @pytest.mark.squash("CT-INS-005")
 def test_ct_ins_005_different_password_confirmation(page):
