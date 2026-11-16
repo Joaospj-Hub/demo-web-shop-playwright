@@ -116,6 +116,7 @@ Les tests automatisés associés aux cas de test Squash utilisent des marqueurs 
 | Identifiant Squash | Scénario automatisé |
 |---|---|
 | CT-INS-001 | Refus d'inscription avec un mot de passe trop court |
+| CT-INS-004 | Inscription d'un nouvel utilisateur avec des données valides |
 | CT-INS-005 | Refus d'inscription avec une confirmation de mot de passe différente |
 Cette organisation permet d'identifier les tests correspondant aux cas de test fonctionnels et de les exécuter individuellement ou par groupe.
 
