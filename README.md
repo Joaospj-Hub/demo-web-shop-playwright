@@ -125,3 +125,44 @@ Pytest affiche directement dans le terminal le résultat de chaque test exécut�
 - `FAILED` : le test a échoué.
 - `SKIPPED` : le test a été ignoré.
 Les résultats permettent de suivre l'exécution des scénarios automatisés et d'identifier rapidement les éventuelles régressions.
+
+
+
+## 10. Tests Playwright TypeScript (migration en cours)
+
+Le projet est en cours de migration vers Playwright TypeScript. Les nouveaux tests se trouvent dans le dossier `e2e/`.
+
+### 10.1. Prérequis
+
+- Node.js v26.13.1 (LTS) : https://nodejs.org (installateur macOS ou Windows)
+- Git
+
+Vérifier les versions :
+
+```bash
+node --version
+npm --version
+```
+
+### 10.2. Installation
+
+Depuis la racine du projet :
+
+```bash
+npm ci
+npx playwright install chromium
+```
+
+`npm ci` installe les versions exactes enregistrées dans `package-lock.json`.
+
+### 10.3. Exécution des tests
+
+```bash
+npx playwright test
+```
+
+### 10.4. Consulter le rapport
+
+```bash
+npx playwright show-report
+```
