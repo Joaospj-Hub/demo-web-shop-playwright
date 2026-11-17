@@ -13,3 +13,11 @@ test_premier_script.py
 
 # Rapports de tests générés
 reports/
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/

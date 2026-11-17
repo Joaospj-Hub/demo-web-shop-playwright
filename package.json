@@ -1,0 +1,26 @@
+{
+  "name": "demo-web-shop-playwright",
+  "version": "1.0.0",
+  "description": "Tests automatisés de l'application Demo Web Shop avec Playwright TypeScript",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StephaneD94/demo-web-shop-playwright.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/StephaneD94/demo-web-shop-playwright/issues"
+  },
+  "homepage": "https://github.com/StephaneD94/demo-web-shop-playwright#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.65.1",
+    "@types/node": "^26.6.6"
+  }
+}
