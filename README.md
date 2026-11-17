@@ -134,34 +134,45 @@ Le projet est en cours de migration vers Playwright TypeScript. Les nouveaux tes
 
 ### 10.1. Prérequis
 
-- Node.js v26.13.1 (LTS) : https://nodejs.org (installateur macOS ou Windows)
-- Git
+Installer **Node.js v26.13.1 (LTS)** avec l'installateur macOS ou Windows : https://nodejs.org
 
-Vérifier les versions :
+Vérifier la version de Node.js :
 
 ```bash
 node --version
+```
+
+Vérifier la version de npm (installé avec Node.js) :
+
+```bash
 npm --version
 ```
 
-### 10.2. Installation
+### 10.2. Installer les dépendances
 
-Depuis la racine du projet :
+Depuis la racine du projet, installer les bibliothèques aux versions exactes du fichier `package-lock.json` :
 
 ```bash
 npm ci
+```
+
+### 10.3. Installer le navigateur Chromium
+
+```bash
 npx playwright install chromium
 ```
 
-`npm ci` installe les versions exactes enregistrées dans `package-lock.json`.
+### 10.4. Exécuter les tests
 
-### 10.3. Exécution des tests
+Cette commande lance tous les tests du dossier `e2e/` :
 
 ```bash
 npx playwright test
 ```
 
-### 10.4. Consulter le rapport
+### 10.5. Consulter le rapport HTML
+
+Cette commande ouvre le rapport des derniers tests dans le navigateur :
 
 ```bash
 npx playwright show-report
