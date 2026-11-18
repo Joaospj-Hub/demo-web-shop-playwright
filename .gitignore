@@ -1,15 +1,4 @@
-# Environnement Python
-.venv/
-venv/
-# Fichiers Python temporaires
-__pycache__/
-*.py[cod]
-# Pytest
-.pytest_cache/
-# Environnements locaux
-.env
 
-test_premier_script.py
 
 # Rapports de tests générés
 reports/
