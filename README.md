@@ -1,7 +1,7 @@
 # Demo Web Shop - Tests automatisés
 
 
-## 1. Tests Playwright TypeScript (migration en cours)
+## 1. Tests Playwright TypeScript 
 
 Le projet est en cours de migration vers Playwright TypeScript. Les nouveaux tests se trouvent dans le dossier `e2e/`.
 
