@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 test("CT-INS-005 : inscription refusée avec une confirmation de mot de passe différente", async ({ page }) => {
     // 1. Ouvrir la page d'inscription
     await page.goto("https://demowebshop.tricentis.com/register");
-    // 2. Saisir « jp.test.s1.001@example.com » dans Email
+    // 2. Saisir « jp.test.s1.005@example.com » dans Email
     await page.locator("#Email").fill("jp.test.s1.005@example.com");
     // 3. Saisir « Jon » dans First name
     await page.locator("#FirstName").fill("Jon");
