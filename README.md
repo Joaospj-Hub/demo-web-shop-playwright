@@ -1,127 +1,124 @@
 # Demo Web Shop - Tests automatisés
 ## 1. Présentation
-Ce projet contient des tests automatisés de l'application Demo Web Shop développés avec Python, Playwright et Pytest.
-Le premier périmètre fonctionnel concerne l'inscription d'un nouvel utilisateur.
-L'objectif est de mettre en place une architecture de tests maintenable, réutilisable et traçable avec les cas de test définis dans Squash.
+Ce projet contient les tests automatisés de l'application [Demo Web Shop](https://demowebshop.tricentis.com/), développés avec Playwright.
+L'objectif est de mettre en place une architecture de tests automatisés maintenable, réutilisable et traçable avec les cas de test fonctionnels définis dans Squash.
+Le projet est actuellement en cours de migration de **Python / Playwright / Pytest vers TypeScript / Playwright Test**.
+Les nouveaux tests sont développés en TypeScript. Les anciens fichiers Python sont conservés temporairement pendant la migration.
 ## 2. Technologies utilisées
-- Python 3.13
-- Playwright
-- Pytest
+- Node.js (version 20 minimum)
+- npm
+- TypeScript
+- Playwright Test (version 1.65.1)
 - Git / GitHub
 - Visual Studio Code
 ## 3. Structure du projet
 ```text
-Projets_Playwright/
+demo-web-shop-playwright/
+│
+├── e2e/
+│   └── ct-ins-001.spec.ts
+│
 ├── pages/
-│   ├── base_page.py
-│   └── register_page.py
+│ 
 ├── tests/
-│   └── test_registration.py
-├── conftest.py
-├── test_data.py
-├── pytest.ini
-├── requirements.txt
-├── README.md
-└── .gitignore
+│
+├── playwright.config.ts
+├── package.json
+├── package-lock.json
+└── README.md
+ 
 ```
 ### Organisation des fichiers
-- `pages/` : contient les objets pages et les interactions avec l'application.
-- `tests/` : contient les scénarios de tests automatisés.
-- `conftest.py` : centralise les fixtures Pytest, notamment l'initialisation du navigateur.
-- `test_data.py` : centralise les données utilisées par les tests.
-- `pytest.ini` : configure Pytest et les marqueurs de traçabilité Squash.
-- `requirements.txt` : liste les dépendances Python du projet.
+- `e2e/` : contient les scénarios de tests automatisés développés en TypeScript.
+- `playwright.config.ts` : centralise la configuration de Playwright Test, notamment les navigateurs et le rapport HTML.
+- `package.json` : définit les dépendances et les informations du projet.
+- `package-lock.json` : verrouille les versions des dépendances pour garantir une installation reproductible.
+- `tests/` et `pages/` : contiennent encore les anciens fichiers Python, conservés pendant la migration.
 ## 4. Prérequis
-Avant de commencer, les outils suivants doivent être installés :
-- Python 3.13
-- Git
-- Visual Studio Code (recommandé)
+Avant de commencer, installer :
+- Node.js version 20 minimum.
+- npm (installé avec Node.js).
+- Git.
+- Visual Studio Code (recommandé).
+Vérifier les installations :
+```bash
+node --version
+npm --version
+git --version
+```
 ## 5. Installation et configuration
 ### 5.1. Récupérer le projet
 Cloner le dépôt Git :
 ```bash
-git clone https://github.com/StephaneD94/demo-web-shop-playwright.git
+git clone https://github.com/Joaospj-Hub/demo-web-shop-playwright.git
 ```
 Se placer dans le dossier du projet :
 ```bash
 cd demo-web-shop-playwright
 ```
-### 5.2. Créer l'environnement virtuel
-**Windows :**
-```powershell
-py -3.13 -m venv .venv
-```
-**macOS / Linux :**
+### 5.2. Installer les dépendances
+Installer les dépendances à partir du fichier `package-lock.json` :
 ```bash
-python3.13 -m venv .venv
+npm ci
 ```
-### 5.3. Activer l'environnement virtuel
-**Windows PowerShell :**
-```powershell
-.venv\Scripts\Activate.ps1
-```
-Si PowerShell bloque l'activation, utiliser l'invite de commandes :
-```cmd
-.venv\Scripts\activate.bat
-```
-**macOS / Linux :**
+Cette commande installe les versions verrouillées dans le fichier de dépendances.
+### 5.3. Installer les navigateurs Playwright
+Installer les navigateurs nécessaires à l'exécution des tests :
 ```bash
-source .venv/bin/activate
+npx playwright install
 ```
-### 5.4. Installer les dépendances
-Sur Windows, macOS et Linux :
-```bash
-python -m pip install -r requirements.txt
-```
-### 5.5. Installer le navigateur Chromium
-```bash
-python -m playwright install chromium
-```
+La configuration actuelle prévoit trois navigateurs :
+- Chromium
+- Firefox
+- WebKit
 ## 6. Exécution des tests
 ### 6.1. Exécuter l'ensemble des tests
 ```bash
-python -m pytest tests -v
+npx playwright test
 ```
-Cette commande lance tous les tests présents dans le dossier `tests/`.
-### 6.2. Exécuter uniquement les tests associés à Squash
+Cette commande lance les tests détectés dans le dossier `e2e/`, selon les projets définis dans `playwright.config.ts`.
+### 6.2. Exécuter les tests sur Chromium uniquement
 ```bash
-python -m pytest -m squash -v
+npx playwright test --project=chromium
 ```
-Cette commande sélectionne les tests portant le marqueur `squash`.
 ### 6.3. Exécuter un cas de test précis
-**CT-INS-001 : Mot de passe trop court**
+**CT-INS-001 : Inscription refusée avec un mot de passe de 5 caractères**
 ```bash
-python -m pytest tests/test_registration.py::test_ct_ins_001_short_password -v
+npx playwright test e2e/ct-ins-001.spec.ts --project=chromium
 ```
-**CT-INS-005 : Confirmation de mot de passe différente**
+### 6.4. Exécuter les tests avec le navigateur visible
 ```bash
-python -m pytest tests/test_registration.py::test_ct_ins_005_different_password_confirmation -v
+npx playwright test --headed
 ```
-## 7. Génération des rapports HTML
-Le projet utilise le plugin `pytest-html` pour générer des rapports d'exécution au format HTML.
-### Générer un rapport HTML
-Créer le dossier `reports/` à la racine du projet, puis exécuter :
-   python -m pytest tests -v --html=reports/rapport_tests.html --self-contained-html
-Le rapport est généré dans le dossier `reports/`.
-### Consulter le rapport
-Ouvrir le fichier `reports/rapport_tests.html` dans un navigateur pour consulter :
+## 7. Génération et consultation du rapport HTML
+Le projet utilise le reporter HTML intégré à Playwright.
+Après une exécution des tests, ouvrir le dernier rapport avec :
+```bash
+npx playwright show-report
+```
+Le rapport permet notamment de consulter :
 - Le nombre de tests réussis et échoués.
 - Le résultat de chaque test.
-- La durée d'exécution.
 - Les éventuelles erreurs.
-Le rapport permet de visualiser rapidement les résultats d'une campagne de tests automatisés.
+- Les détails des exécutions.
+Le rapport est généré dans le dossier `playwright-report/`.
 
 ## 8. Traçabilité avec Squash
-Les tests automatisés associés aux cas de test Squash utilisent des marqueurs Pytest.
+Les tests automatisés associés aux cas de test Squash reprennent leur identifiant fonctionnel dans leur nom.
 | Identifiant Squash | Scénario automatisé |
 |---|---|
 | CT-INS-001 | Refus d'inscription avec un mot de passe trop court |
-| CT-INS-005 | Refus d'inscription avec une confirmation de mot de passe différente |
-Cette organisation permet d'identifier les tests correspondant aux cas de test fonctionnels et de les exécuter individuellement ou par groupe.
+Cette organisation permet d'identifier les tests correspondant aux cas de test fonctionnels et de suivre leur automatisation.
 
 ## 9. Résultats des tests
-Pytest affiche directement dans le terminal le résultat de chaque test exécuté.
-- `PASSED` : le test a réussi.
-- `FAILED` : le test a échoué.
-- `SKIPPED` : le test a été ignoré.
+Playwright affiche directement dans le terminal le résultat de chaque test exécuté.
+- `passed` : le test a réussi.
+- `failed` : le test a échoué.
+- `skipped` : le test a été ignoré.
 Les résultats permettent de suivre l'exécution des scénarios automatisés et d'identifier rapidement les éventuelles régressions.
+
+## 10. État de la migration
+La migration de Python / Playwright / Pytest vers TypeScript / Playwright Test est en cours.
+Les nouveaux scénarios sont développés en TypeScript dans le dossier `e2e/`.
+Les anciens fichiers Python restent présents temporairement afin de permettre une transition progressive.
+La documentation et la structure du projet seront mises à jour au fur et à mesure de l'avancement de cette migration.
