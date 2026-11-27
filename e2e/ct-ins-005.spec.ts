@@ -17,9 +17,9 @@ test("CT-INS-005 : inscription refusée avec une confirmation de mot de passe di
     await page.locator("#ConfirmPassword").fill("123457");
     // 8. Cliquer sur « Register »
     await page.locator("#register-button").click();
-     // 9. Vérifier que le message d'erreur s'affiche
-    await expect(page.getByText("The password and confirmation password do not match.")).toBeVisible();
-     // 10. Vérifier que le lien « Log in » est visible
+    // 9. Vérifier que le message d'erreur contient « do not match »
+    await expect(page.locator(".field-validation-error")).toContainText("do not match");
+    // 10. Vérifier que le lien « Log in » est visible
     await expect(page.getByText("Log in")).toBeVisible();
     await expect(page.getByText("jp.test.s1.005@example.com")).not.toBeVisible();
 });
